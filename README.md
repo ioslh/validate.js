@@ -36,9 +36,8 @@
 </script>
 ```
 
-```javascript
-new FormValidate(form,formconfig);
-```
+
+
 
 ### 特点
 1. 使用简单，只要创建一个`FormValidate`类的对象，并传入两个参数即可；
