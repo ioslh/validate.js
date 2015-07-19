@@ -63,16 +63,16 @@ var form=document.getElementById("myform");
 
 ```javascript
 var formconfig={
-	"username":{															// 配置表单username字段的验证规则；
-		"reg":/^\w+$/,													// 配置自定义的验证规则；
-		"fail":"用户名不符合规范。",								// 配置验证不通过时的提示内容；
-		"success":"<b>恭喜该用户名可用。</b>",			// 配置验证通过时的提示内容；
-		"empty":"用户名不能为空。",								 // 配置表单字段为空时的提示内容
-		"fieldtype":"username",									// 如果没有配置`reg`选项，配置该选项可以指定脚本内置的验证规则；
-		"required":true,												// 配置该字段是否为必填项；
+	"username":{	// 配置表单username字段的验证规则；
+		"reg":/^\w+$/,	// 配置自定义的验证规则；
+		"fail":"用户名不符合规范。",	// 配置验证不通过时的提示内容；
+		"success":"<b>恭喜该用户名可用。</b>",	// 配置验证通过时的提示内容；
+		"empty":"用户名不能为空。",	// 配置表单字段为空时的提示内容
+		"fieldtype":"username",	// 如果没有配置`reg`选项，配置该选项可以指定脚本内置的验证规则；
+		"required":true,	// 配置该字段是否为必填项；
 	},
-	"email":{																	// 配置表单email字段的验证规则
-																						// 所有配置留空，采用默认配置；
+	"email":{	// 配置表单email字段的验证规则
+	// 所有配置留空，采用默认配置；
 	},
 	"phone":{
 		"fail":"",
