@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Validate.js by sunlianghua</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Validate.js</h1>
+      <h2 class="project-tagline">A lightweight form validate script</h2>
+      <a href="https://github.com/sunlianghua/validate.js" class="btn">View on GitHub</a>
+      <a href="https://github.com/sunlianghua/validate.js/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/sunlianghua/validate.js/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h2>
+<a id="一个轻量级表单验证控件" class="anchor" href="#%E4%B8%80%E4%B8%AA%E8%BD%BB%E9%87%8F%E7%BA%A7%E8%A1%A8%E5%8D%95%E9%AA%8C%E8%AF%81%E6%8E%A7%E4%BB%B6" aria-hidden="true"><span class="octicon octicon-link"></span></a>一个轻量级表单验证控件</h2>
+
+<hr>
+
+<p>这是一个轻量级表单验证脚本，所有的代码封装在一个类<code>FormValidate</code>中，使用时<code>new</code>操作创建一个该类的对象，并传入两个参数：</p>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-k">new</span> <span class="pl-en">FormValidate</span>(form,formconfig);</pre></div>
+
+<h3>
+<a id="特点" class="anchor" href="#%E7%89%B9%E7%82%B9" aria-hidden="true"><span class="octicon octicon-link"></span></a>特点</h3>
+
+<ol>
+<li>使用简单，只要创建一个<code>FormValidate</code>类的对象，并传入两个参数即可；</li>
+<li>不直接改变元素的样式，而是根据验证的结果改变相关元素的类，这样用户可以更自由的定制表单样式；</li>
+<li>提供大量默认配置，全部采用默认配置的话只要传入一个选定的表单元素即可实现功能（这个前提是用户的表单HTML结构严格遵守HTML结构要求）；</li>
+<li>所有的默认配置都可以被覆盖，用户可以非常灵活的采用。如果不想采用默认配置，用户可以针对每个表单字段自定义验证规则以及验证通过或者不通过的提示信息；</li>
+</ol>
+
+<hr>
+
+<h3>
+<a id="html结构要求" class="anchor" href="#html%E7%BB%93%E6%9E%84%E8%A6%81%E6%B1%82" aria-hidden="true"><span class="octicon octicon-link"></span></a>HTML结构要求</h3>
+
+<div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">form</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>myform<span class="pl-pds">"</span></span>&gt;
+    &lt;<span class="pl-ent">div</span>&gt;
+        &lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>text<span class="pl-pds">"</span></span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>username<span class="pl-pds">"</span></span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>fv<span class="pl-pds">"</span></span>&gt;
+        &lt;<span class="pl-ent">span</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>tips<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">span</span>&gt;
+    &lt;/<span class="pl-ent">div</span>&gt;
+    &lt;<span class="pl-ent">div</span>&gt;
+        &lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>email<span class="pl-pds">"</span></span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>email<span class="pl-pds">"</span></span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>fv<span class="pl-pds">"</span></span>&gt;
+        &lt;<span class="pl-ent">span</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>tips<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">span</span>&gt;
+    &lt;/<span class="pl-ent">div</span>&gt;
+    &lt;<span class="pl-ent">div</span>&gt;
+        &lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>number<span class="pl-pds">"</span></span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>phone<span class="pl-pds">"</span></span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>fv<span class="pl-pds">"</span></span>&gt;
+        &lt;<span class="pl-ent">span</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>tips<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">span</span>&gt;
+    &lt;/<span class="pl-ent">div</span>&gt;
+    &lt;<span class="pl-ent">div</span>&gt;
+        &lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>submit<span class="pl-pds">"</span></span>/&gt;
+    &lt;/<span class="pl-ent">div</span>&gt;
+&lt;/<span class="pl-ent">form</span>&gt;</pre></div>
+
+<ol>
+<li>每一个需要验证的表单字段必须设置唯一的<code>name</code>属性和<code>class</code>属性，且<code>class</code>中必须包含<code>fv</code>（意思是<code>form validate</code>）;</li>
+<li>每一个表单字段必须有一个相应的提示标签来显示验证通过或者不通过的信息，比如<code>span</code>，且其<code>class</code>属性需要包含<code>tips</code>；</li>
+<li>每一个表单字段与相应的提示标签必须在同一个父元素内，每个这样的父元素中只能放一个表单字段及其提示标签，如上述示例中的<code>div</code>标签。</li>
+</ol>
+
+<hr>
+
+<h3>
+<a id="参数要求" class="anchor" href="#%E5%8F%82%E6%95%B0%E8%A6%81%E6%B1%82" aria-hidden="true"><span class="octicon octicon-link"></span></a>参数要求</h3>
+
+<p>该脚本使用时只需要<code>new</code>操作创建一个<code>FormValidate</code>类型的对象即可，创建时，需要传入两个参数：<code>form</code>，<code>formconfig</code>；</p>
+
+<h4>
+<a id="参数一form" class="anchor" href="#%E5%8F%82%E6%95%B0%E4%B8%80form" aria-hidden="true"><span class="octicon octicon-link"></span></a>参数一：<code>form</code>
+</h4>
+
+<p>获取需要进行验证的表单，比如:</p>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-k">var</span> form<span class="pl-k">=</span><span class="pl-c1">document</span>.<span class="pl-c1">getElementById</span>(<span class="pl-s"><span class="pl-pds">"</span>myform<span class="pl-pds">"</span></span>);</pre></div>
+
+<h4>
+<a id="参数二formconfig" class="anchor" href="#%E5%8F%82%E6%95%B0%E4%BA%8Cformconfig" aria-hidden="true"><span class="octicon octicon-link"></span></a>参数二：<code>formconfig</code>
+</h4>
+
+<p>第二个参数是一个对象，用来配置的验证选项，以下面一个例子来说明</p>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-k">var</span> formconfig<span class="pl-k">=</span>{
+    <span class="pl-s"><span class="pl-pds">"</span>username<span class="pl-pds">"</span></span><span class="pl-k">:</span>{
+        <span class="pl-s"><span class="pl-pds">"</span>reg<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-sr"><span class="pl-pds">/</span><span class="pl-k">^</span><span class="pl-c1">\w</span><span class="pl-k">+</span><span class="pl-k">$</span><span class="pl-pds">/</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>fail<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">"</span>用户名不符合规范。<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>success<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">"</span>&lt;b&gt;恭喜该用户名可用。&lt;/b&gt;<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>empty<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">"</span>用户名不能为空。<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>fieldtype<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">"</span>username<span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>required<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-c1">true</span>,
+    },
+    <span class="pl-s"><span class="pl-pds">"</span>email<span class="pl-pds">"</span></span><span class="pl-k">:</span>{
+
+    },
+    <span class="pl-s"><span class="pl-pds">"</span>phone<span class="pl-pds">"</span></span><span class="pl-k">:</span>{
+        <span class="pl-s"><span class="pl-pds">"</span>fail<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>,
+        <span class="pl-s"><span class="pl-pds">"</span>required<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-c1">true</span>
+    }
+};</pre></div>
+
+<p>这个配置对象可以用于前述html结构中的表单验证。
+如上所示，需要进行表单验证的每个字段，都需要(必须)在<code>formconfig</code>对象中设定对应的属性，且属性名与该字段的<code>name</code>特性值一致。(属性名对应的属性值是空对象也可以，总之必须指定；如果是空对象则对应的表单字段全部采用脚本自动选择的验证规则。)</p>
+
+<p><code>formconfig</code>对象中每个属性名对应的值都是一个对象，这个对象可以设置如下属性：</p>
+
+<h5>
+<a id="reg" class="anchor" href="#reg" aria-hidden="true"><span class="octicon octicon-link"></span></a>"reg"</h5>
+
+<blockquote>
+<p><code>reg</code>接收一个正则表达式，可以自定义该字段的验证规则；当然，脚本内置了一些常用的验证规则，可以满足大部分常用需求，如果启用脚本内置的验证规则，不用设置该属性，在<code>fieldtype</code>属性中指定脚本内置的验证规则。</p>
+</blockquote>
+
+<h5>
+<a id="fieldtype" class="anchor" href="#fieldtype" aria-hidden="true"><span class="octicon octicon-link"></span></a>"fieldtype"</h5>
+
+<blockquote>
+<p><code>fieldtype</code>接收一个字符串，用于指定该字段的验证规则。脚本内置的验证规则列举如下，可以将<code>fieldtype</code>值指定为以下的任何一个。</p>
+</blockquote>
+
+<pre><code>1. "text"，非空字符；
+2. "email"，邮件格式；
+3. "phone"，中国大陆地区的手机号；
+4. "postcode"，六位数邮政编码；
+5. "number"，任何有效数字（正、负树，0，小数）；
+6. "url"，超链接；
+7. "username"，注册用户名；
+8. "password"，一般密码规则，要求四位及以上非空字符串；
+9. "strongpassword"，更强壮的密码匹配，要求密码八位及以上且包含数字、字母及特殊字符。
+</code></pre>
+
+<h5>
+<a id="fail" class="anchor" href="#fail" aria-hidden="true"><span class="octicon octicon-link"></span></a>"fail"</h5>
+
+<blockquote>
+<p><code>fail</code>接收一个字符串，指定验证不通过时的提示文字内容，可用html标签。如果不指定该属性，则采用默认的内容“field is not valid.”；</p>
+</blockquote>
+
+<h5>
+<a id="success" class="anchor" href="#success" aria-hidden="true"><span class="octicon octicon-link"></span></a>"success"</h5>
+
+<blockquote>
+<p><code>success</code>接收一个字符串，指定验证通过时的提示文字内容，可用html标签。如果不指定该属性，则采用默认的内容“field is OK.”；</p>
+</blockquote>
+
+<h5>
+<a id="empty" class="anchor" href="#empty" aria-hidden="true"><span class="octicon octicon-link"></span></a>"empty"</h5>
+
+<blockquote>
+<p><code>empty</code>接收一个字符串，指定当表单字段为空时的提示文字内容，可用html标签。如果不指定该属性，则采用默认的内容“field is required.”；</p>
+</blockquote>
+
+<h5>
+<a id="required" class="anchor" href="#required" aria-hidden="true"><span class="octicon octicon-link"></span></a>"required"</h5>
+
+<blockquote>
+<p><code>required</code>接收一个布尔值，指定该表单字段是否为必填项；也可以直接在标签行内指定表单字段的<code>required</code>特性。</p>
+</blockquote>
+
+<h4>
+<a id="验证规则的优先级" class="anchor" href="#%E9%AA%8C%E8%AF%81%E8%A7%84%E5%88%99%E7%9A%84%E4%BC%98%E5%85%88%E7%BA%A7" aria-hidden="true"><span class="octicon octicon-link"></span></a>验证规则的优先级</h4>
+
+<ol>
+<li>优先级最高的是用户为表单字段自定义的<code>reg</code>属性。</li>
+<li>其次，如果用户没有指定某表单字段的<code>reg</code>属性，则根据用户提供<code>fieldtype</code>值采用脚本内置的常用验证规则。</li>
+<li>最后，如果用户也没有指定<code>fieldtype</code>属性，则根据该表单字段的<code>type</code>特性自动选择最合适的验证规则。</li>
+</ol>
+
+<h3>
+<a id="后续操作" class="anchor" href="#%E5%90%8E%E7%BB%AD%E6%93%8D%E4%BD%9C" aria-hidden="true"><span class="octicon octicon-link"></span></a>后续操作</h3>
+
+<p>在传入参数创建了<code>FormValidate</code>对象后，传入的表单就可以实现验证的功能。
+比如</p>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-k">var</span> fv<span class="pl-k">=</span><span class="pl-k">new</span> <span class="pl-en">FormValidate</span>(form,formconfig);
+<span class="pl-c1">form</span>.<span class="pl-en">onsubmit</span><span class="pl-k">=</span><span class="pl-k">function</span>(<span class="pl-smi">e</span>){
+    <span class="pl-c1">alert</span>(fv.result);
+    e.preventDefault();
+}</pre></div>
+
+<p>这之后，可以在任何时候访问<code>fv.result</code>属性（其值是<code>true</code>或者<code>false</code>）获取整个表单的验证结果，而且所有的表单字段值已经过滤了首位空字符。</p>
+
+<h3>
+<a id="ui样式设定" class="anchor" href="#ui%E6%A0%B7%E5%BC%8F%E8%AE%BE%E5%AE%9A" aria-hidden="true"><span class="octicon octicon-link"></span></a>UI样式设定</h3>
+
+<p>该脚本不改变任何元素样式，只是根据不同的验证结果给相关元素设定不同的<code>class</code>值，你可以通过指定<code>class</code>的样式，来为表单建立不同外观。</p>
+
+<ol>
+<li>
+<p>某表单字段获得焦点：</p>
+
+<ul>
+<li>该字段的HTML标签添加类<code>active</code>；</li>
+</ul>
+</li>
+<li>
+<p>某表单字段失去焦点：</p>
+
+<ul>
+<li>该字段的HTML标签删除类<code>active</code>；</li>
+</ul>
+</li>
+<li>
+<p>某表单字段验证通过：</p>
+
+<ul>
+<li>该表单字段添加<code>success</code>类；</li>
+<li>该表单对应的提示标签添加<code>success</code>类；</li>
+</ul>
+</li>
+<li>
+<p>某表单字段验证不通过：</p>
+
+<ul>
+<li>该表单字段添加<code>fail</code>类；</li>
+<li>该表单对应的提示标签添加<code>fail</code>类；</li>
+</ul>
+</li>
+<li>
+<p>某表单字段为空：</p>
+
+<ul>
+<li>该表单字段添加<code>empty</code>类；</li>
+<li>该表单对应的提示标签添加<code>empty</code>类。</li>
+</ul>
+</li>
+</ol>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/sunlianghua/validate.js">Validate.js</a> is maintained by <a href="https://github.com/sunlianghua">sunlianghua</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
+
