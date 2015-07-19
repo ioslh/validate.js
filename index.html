@@ -89,6 +89,11 @@
 			<input type="password" name="password" class="fv">
 			<span class="tips"></span>
 		</div>
+		<div class="item">
+			<label for="ip">IP</label>
+			<input type="text" name="ip" class="fv">
+			<span class="tips"></span>
+		</div>
 
 		<div class="item">
 			<label> &nbsp;</label>
@@ -111,7 +116,9 @@
 		"email":{
 			"empty":"邮箱是必须的。 ",
 			"fail":"不是有效的邮箱格式。",
-			"success":"邮箱有效。"
+			"success":"邮箱有效。",
+			"required":true,
+			"fieldtype":"email"
 		},
 		"phone":{
 			"empty":"手机号是必须的。",
@@ -131,6 +138,12 @@
 			"fail":"密码格式不正确。",
 			"success":"密码有效。",
 			"fieldtype":"strongpassword"
+		},
+		"ip":{
+			"empty":"IP不可为空。",
+			"fail":"IP格式不正确。",
+			"success":"IP有效。",
+			"fieldtype":"ipv4"
 		}
 	};
 	

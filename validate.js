@@ -60,7 +60,9 @@ FormValidate.prototype.getReg=function(ele){
 		"url":/^https?:\/\/[-a-z0-9]+(\.[-a-z0-9]+)+(\.*)?$/i,
 		"username":/^[-_a-zA-Z0-9]{4,}$/,
 		"password":/^[^\s]{4,}$/,
-		"strongpassword":/^(?=.*\d)(?=.*[a-zA-Z])(?=.*[\W])[\da-zA-Z\W]{8,}$/
+		"strongpassword":/^(?=.*\d)(?=.*[a-zA-Z])(?=.*[\W])[\da-zA-Z\W]{8,}$/,
+		"ipv4":/^(\d|\d\d|[01]\d\d|2[0-4]\d|25[0-5])(\.(\d|\d\d|[01]\d\d|2[0-4]\d|25[0-5])){3}$/,
+		"qq":/^\d{5,10}$/
 	};
 	
 	var fieldName=this.config[ele.name];
