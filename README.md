@@ -1,10 +1,40 @@
 ## 一个轻量级表单验证控件
 ---
 
-这是一个轻量级表单验证脚本，所有的代码封装在一个类`FormValidate`中，使用时`new`操作创建一个该类的对象，并传入两个参数：
+
+这是一个轻量级表单验证脚本，所有的代码封装在一个类`FormValidate`中，使用时只要将下载后解压的js文件`validate.js`通`script`标签引入自己的页面，然后`new`操作创建一个该类的对象，并传入两个参数即可使表单实现输入验证的功能。
+### 示例代码
 
 
+```html
+<!--一、首先是表单的html结构-->
+<form id="myform">
+	<div>
+		<input type="text" name="username" class="fv"><span class="tips"></span>
+	</div>
+	<div>
+		<input type="email" name="email" class="fv"><span class="tips"></span>
+	</div>
+	<div>
+		<input type="submit" value="submit">
+	</div>
+</form>
+<!--二、引入js文件-->
+<script src="validate.js"></script>
 
+<!--三、初始化-->
+<script>
+	var form = document.getElementById("myform");
+	
+	var config={
+		"username":{},
+		"email":{}
+	};
+	
+	var fv=new FormValidate(form,config);
+	//这样页面中的表单就具有了输入验证的功能。
+</script>
+```
 
 ```javascript
 new FormValidate(form,formconfig);
