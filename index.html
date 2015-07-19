@@ -1,0 +1,146 @@
+<html>
+<head></head>
+<style>
+	*{
+		font-family:"FreeMono";
+	}
+	form{
+		margin:auto;
+		/*margin-top:50px;*/
+	}
+	.item{
+		padding:10px;
+		border-bottom:1px dashed #666;
+	}
+	.item label{
+		float:left;
+		width:180px;
+		line-height:30px;
+		text-align:right;
+		padding-right:10px;
+	}
+	.item input{
+		line-height:30px;
+		height:30px;
+		width:200px;
+		border-radius:4px;
+	}
+
+	.item input[type=text],.item input[type=email],.item input[type=password]{
+		text-indent:10px;
+		outline:none;
+		border:1px solid #aaa;
+	}
+	.item input[type=submit]{
+		background-color:#88f;
+		color:white;
+		border:0;
+		font-weight:600;
+		font-size:20px;
+	}
+	.item input.active{
+		border:1px solid #aaf;
+		box-shadow:0 0 6px #aaf inset;
+	}
+	.item span{
+
+		padding:3px 5px;
+		font-weight:200;
+	}
+	.item span.fail{
+		color:#d10404;
+	}
+	.item span.empty{
+		color:#333;
+	}
+	.item span.success{
+		color:#2ebc0f;
+	}
+	
+</style>
+<body>
+	<form id="form">
+		<div class="item">
+			<label>&nbsp;</label>
+			<h4>Register</h4>
+		</div>
+		<div class="item">
+			<label for="name">name</label>
+			<input type="text" name="name" class="fv" required>
+			<span  class="tips"></span>
+		</div>
+		<div class="item">
+			<label for="email">email</label>
+			<input type="email" name="email" class="fv">
+			<span  class="tips"></span>
+		</div>
+		<div class="item">
+			<label for="phone">phone</label>
+			<input type='text' name="phone" class="fv">
+			<span class="tips"></span>
+		</div>
+		<div class="item">
+			<label for="nickname">nickname</label>
+			<input type="text" name="nickname" class="fv">
+			<span class="tips"></span>
+		</div>
+		<div class="item">
+			<label for="password">password</label>
+			<input type="password" name="password" class="fv">
+			<span class="tips"></span>
+		</div>
+
+		<div class="item">
+			<label> &nbsp;</label>
+			<input type="submit" value="submit">
+		</div>
+	</form>
+	
+	<script src="validate.js"></script>
+	
+	<script>
+	var form=document.getElementById("form");
+	var config={
+		"name":{
+			"empty":"Name is required. ",
+			"fail":"Name should not be less than 4 charactors. ",
+			"success":"OK. ",
+			"fieldtype":"url",
+			"required":true
+		},
+		"email":{
+			"empty":"Email is required. ",
+			"fail":"This email format is not valid. ",
+			"success":"OK. "
+		},
+		"phone":{
+			"empty":"Phone number is required. ",
+			"fail":"Phone number must be 11-digit number. ",
+			"success":"OK. ",
+			"required":true,
+			"fieldtype":"phone"
+		},
+		"nickname":{
+			"empty":"Nickname is required. ",
+			"fail":"Nickname is not valid. ",
+			"success":"OK. ",
+			"fieldtype":"username"
+		},
+		"password":{
+			"empty":"Password is required. ",
+			"fail":"Password is not valid. ",
+			"success":"OK. ",
+			"fieldtype":"strongpassword"
+		}
+	};
+	
+	var fv=new FormValidate(form,config);
+	form.onsubmit=function(e){
+		e.preventDefault();
+		alert(fv.result);;
+	}
+
+	
+	</script>
+</body>
+</html>
